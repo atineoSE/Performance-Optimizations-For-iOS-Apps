@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PhotoViewController" customModule="FilmMakers" customModuleProvider="target">
+            <connections>
+                <outlet property="photoDetail" destination="uh4-ZO-SlX" id="sZA-dQ-mjt"/>
+                <outlet property="view" destination="Qw1-4k-Um3" id="YPI-Ng-ybU"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Qw1-4k-Um3">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="cV8-xF-C3e">
+                    <rect key="frame" x="16" y="16" width="221" height="40"/>
+                    <subviews>
+                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" image="tarantino" translatesAutoresizingMaskIntoConstraints="NO" id="sjP-hy-ByW" customClass="DesignableImageView" customModule="FilmMakers" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="Jmv-IG-b4B"/>
+                                <constraint firstAttribute="height" constant="40" id="ipO-eM-IrC"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                    <real key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </imageView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="aLR-yf-Oi9">
+                            <rect key="frame" x="48" y="1" width="173" height="38"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quentin Tarantino" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tsE-UC-bga">
+                                    <rect key="frame" x="0.0" y="0.0" width="173" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Director / actor - American" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kz3-6C-Kd7">
+                                    <rect key="frame" x="0.0" y="21" width="173" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="5yt-vU-tXe"/>
+                    </constraints>
+                </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WBz-U1-iKG">
+                    <rect key="frame" x="354" y="12" width="44" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="0tW-gG-KeC"/>
+                        <constraint firstAttribute="height" constant="44" id="Jw3-Oj-cfa"/>
+                    </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" image="Arrow"/>
+                    <connections>
+                        <action selector="didTapClose:" destination="-1" eventType="touchUpInside" id="c99-MI-qoT"/>
+                    </connections>
+                </button>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uh4-ZO-SlX">
+                    <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="cV8-xF-C3e" firstAttribute="leading" secondItem="0Wm-uH-z9p" secondAttribute="leading" constant="16" id="FVX-ye-YN0"/>
+                <constraint firstItem="uh4-ZO-SlX" firstAttribute="top" secondItem="cV8-xF-C3e" secondAttribute="bottom" constant="8" id="JUz-HW-aqb"/>
+                <constraint firstItem="uh4-ZO-SlX" firstAttribute="centerX" secondItem="Qw1-4k-Um3" secondAttribute="centerX" id="QT9-iS-pQl"/>
+                <constraint firstAttribute="trailing" secondItem="uh4-ZO-SlX" secondAttribute="trailing" id="RXc-Ok-ZtK"/>
+                <constraint firstItem="WBz-U1-iKG" firstAttribute="top" secondItem="Qw1-4k-Um3" secondAttribute="top" constant="12" id="ZNL-Jd-AT2"/>
+                <constraint firstItem="cV8-xF-C3e" firstAttribute="top" secondItem="Qw1-4k-Um3" secondAttribute="top" constant="16" id="cMd-I2-wK2"/>
+                <constraint firstItem="uh4-ZO-SlX" firstAttribute="leading" secondItem="Qw1-4k-Um3" secondAttribute="leading" id="fqC-FY-pVp"/>
+                <constraint firstItem="0Wm-uH-z9p" firstAttribute="bottom" secondItem="uh4-ZO-SlX" secondAttribute="bottom" id="jRa-7X-Sad"/>
+                <constraint firstItem="0Wm-uH-z9p" firstAttribute="trailing" secondItem="WBz-U1-iKG" secondAttribute="trailing" constant="16" id="jyd-9D-uM0"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="0Wm-uH-z9p"/>
+            <point key="canvasLocation" x="131.8840579710145" y="-492.39130434782612"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Arrow" width="126" height="126"/>
+        <image name="tarantino" width="256" height="256"/>
+    </resources>
+</document>

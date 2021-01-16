@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lin-vT-FC8">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+    </dependencies>
+    <scenes>
+        <!--Profile View Controller-->
+        <scene sceneID="3f9-M8-Hxe">
+            <objects>
+                <viewController id="lin-vT-FC8" customClass="ProfileViewController" customModule="FilmMakers" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lZ4-1r-TTA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="448" y="-129"/>
+        </scene>
+        <!--Photo Collection View Controller-->
+        <scene sceneID="K5W-IX-Wea">
+            <objects>
+                <viewController storyboardIdentifier="PhotoCollectionViewControllerStoryboardIdentifier" id="F3g-Kj-gy5" customClass="PhotoCollectionViewController" customModule="FilmMakers" customModuleProvider="target" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="ySc-Vn-1ON" kind="presentation" identifier="ShowPhotoDetails" id="eqG-qZ-e5Z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kdz-Ve-FNR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1226" y="-129"/>
+        </scene>
+        <!--Photo View Controller-->
+        <scene sceneID="lNR-jm-doV">
+            <objects>
+                <viewController id="ySc-Vn-1ON" customClass="PhotoViewController" customModule="FilmMakers" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Umj-jr-Ca6"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NZi-Cz-0xH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2386" y="-129"/>
+        </scene>
+    </scenes>
+</document>

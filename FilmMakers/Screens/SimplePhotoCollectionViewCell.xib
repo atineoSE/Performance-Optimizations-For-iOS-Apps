@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SimplePhotoCollectionViewCell" customModule="FilmMakers" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SimplePhotoCollectionViewCell" id="XAM-Q6-Iod" customClass="SimplePhotoCollectionViewCell" customModule="FilmMakers" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="4kJ-Wr-Dkj">
+                <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="movie_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="KiB-Ad-5NV">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="KiB-Ad-5NV" secondAttribute="trailing" id="2XL-qW-81J"/>
+                    <constraint firstAttribute="bottom" secondItem="KiB-Ad-5NV" secondAttribute="bottom" id="ToQ-dh-Jit"/>
+                    <constraint firstItem="KiB-Ad-5NV" firstAttribute="leading" secondItem="4kJ-Wr-Dkj" secondAttribute="leading" id="ZmD-U0-VrN"/>
+                    <constraint firstItem="KiB-Ad-5NV" firstAttribute="top" secondItem="4kJ-Wr-Dkj" secondAttribute="top" id="yEw-1y-D8K"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="300" height="200"/>
+            <connections>
+                <outlet property="photoImageView" destination="KiB-Ad-5NV" id="2CE-H7-Soh"/>
+            </connections>
+            <point key="canvasLocation" x="132" y="110"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="movie_placeholder" width="600" height="900"/>
+    </resources>
+</document>
