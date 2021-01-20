@@ -7,7 +7,8 @@ class PhotoCollectionViewController: UIViewController {
     
     private var networkController: NetworkController?
     private var dataSource: PhotoCollectionDataSource?
-    private var selectedPoster: UIImage?
+    private var persistenceController: InMemoryRepo?
+    private var selectedIndexPath: IndexPath?
     
     var containerSize: CGSize? {
         didSet {
@@ -22,6 +23,9 @@ class PhotoCollectionViewController: UIViewController {
         
         // Initialize network controller
         networkController = NetworkController()
+        
+        // Initialize persistence controller
+        persistenceController = InMemoryRepo()
         
         // Initialize data source
         dataSource = PhotoCollectionDataSource(posterIds: FilmPosters.posterIds)
@@ -52,9 +56,34 @@ class PhotoCollectionViewController: UIViewController {
         {
             return
         }
-        
-        destination.poster = selectedPoster
+        if let selectedIndexPath = selectedIndexPath {
+            inject(posterIndexPath: selectedIndexPath, into: destination)
+        }
     }
+    
+    private func inject(posterIndexPath:IndexPath, into photoViewController: PhotoViewController) {
+        guard let dataSource = dataSource,
+            let networkController = networkController,
+            let persistenceController = persistenceController
+            else {
+                return
+        }
+        
+        let posterId = dataSource.posterId(at: posterIndexPath)
+        if let poster = persistenceController.retrieve(posterId: posterId) {
+            photoViewController.poster = poster
+        } else {
+            photoViewController.poster = dataSource.poster(at: posterIndexPath)
+            networkController.fetchFilmPoster(posterId: posterId, small: false) { [weak self] posterData in
+                if let poster = UIImage(data: posterData) {
+                    self?.persistenceController?.save(posterId: posterId, poster: poster)
+                    photoViewController.poster = poster
+                    print("Fetched big version for poster at index \(posterIndexPath)")
+                }
+            }
+        }
+    }
+
     
     func showPhotoDetails() {
         performSegue(withIdentifier: PhotoCollectionViewController.ShowPhotoDetailsSegueIdentifier, sender: self)
@@ -64,22 +93,19 @@ class PhotoCollectionViewController: UIViewController {
 extension PhotoCollectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("didSelectItemAt \(indexPath)")
-        selectedPoster = dataSource?.poster(at: indexPath)
+        selectedIndexPath = indexPath
         showPhotoDetails()
     }
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let cell = cell as? SimplePhotoCollectionViewCell,
-              let networkController = networkController,
-              let dataSource = dataSource
-        else {
-            return
-        }
+        let networkController = networkController,
+        let dataSource = dataSource else { return }
         
         if let poster = dataSource.poster(at: indexPath) {
             cell.set(poster: poster)
         } else {
-            networkController.fetchFilmPoster(posterId: dataSource.posterId(at: indexPath)) { [weak self] posterData in
+            networkController.fetchFilmPoster(posterId: dataSource.posterId(at: indexPath), small: true) { [weak self] posterData in
                 if let poster = UIImage(data: posterData) {
                     dataSource.store(poster: poster, at: indexPath)
                     print("Fetched image at \(indexPath.row) (\(dataSource.posterId(at: indexPath)))")

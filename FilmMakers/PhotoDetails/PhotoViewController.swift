@@ -7,7 +7,14 @@ class PhotoViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    var poster: UIImage?
+    var poster: UIImage? {
+        didSet {
+            if (isOnScreen) {
+                print("Updated image for high-res one")
+                UIView.transition(with: photoDetail, duration: 0.2, options: .transitionCrossDissolve, animations: { self.photoDetail.image = self.poster }, completion: nil)
+            }
+        }
+    }
     
     override func viewDidLoad() {
         photoDetail.image = poster
