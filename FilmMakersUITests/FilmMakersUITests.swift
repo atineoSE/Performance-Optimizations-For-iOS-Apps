@@ -15,7 +15,8 @@ class FilmMakersUITests: XCTestCase {
         measure {
             app.launch()
             app.cells.firstMatch.tap()
-            XCTAssertTrue(app.images["PosterDetail"].exists)
+            let wasFound = app.images["PosterDetail"].waitForExistence(timeout: 5.0)
+            XCTAssertTrue(wasFound)
             app.terminate()
         }
     }
