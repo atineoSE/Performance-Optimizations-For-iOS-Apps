@@ -9,24 +9,24 @@ class PhotoCollectionDataSource : NSObject {
             photoSize = sampleImage.resized(newHeight: imageHeight).size
         }
     }
-    private let posters: [UIImage]
+    private let posterIds: [String]
 
-    init(posters: [UIImage]) {
-        self.posters = posters
+    init(posterIds: [String]) {
+        self.posterIds = posterIds
     }
 
     func sizeForPoster(at indexPath: IndexPath) -> CGSize {
         return photoSize
     }
 
-    func poster(at indexPath: IndexPath) -> UIImage? {
-        return posters[indexPath.row]
+    func posterId(at indexPath: IndexPath) -> String {
+        return posterIds[indexPath.row]
     }
 }
 
 extension PhotoCollectionDataSource : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return posters.count
+        return posterIds.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -36,7 +36,7 @@ extension PhotoCollectionDataSource : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let identifier = SimplePhotoCollectionViewCell.Identifier
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! SimplePhotoCollectionViewCell
-        cell.poster = posters[indexPath.row]
+        cell.poster = UIImage(named: "movie_placeholder")!.resized(newHeight: imageHeight ?? SimplePhotoCollectionViewCell.defaultCellSize.height)
         
         return cell
     }

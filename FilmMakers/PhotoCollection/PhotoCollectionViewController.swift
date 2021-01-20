@@ -5,8 +5,9 @@ class PhotoCollectionViewController: UIViewController {
     static let Identifier = "PhotoCollectionViewController"
     @IBOutlet weak var photoCollectionView: UICollectionView!
     
+    private var networkController: NetworkController?
     private var dataSource: PhotoCollectionDataSource?
-    private var selectedPoster: UIImage?
+    private var selectedPosterId: String?
     
     var containerSize: CGSize? {
         didSet {
@@ -19,8 +20,11 @@ class PhotoCollectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Initialize network controller
+        networkController = NetworkController()
+        
         // Initialize data source
-        dataSource = PhotoCollectionDataSource(posters: FilmPosters.posters)
+        dataSource = PhotoCollectionDataSource(posterIds: FilmPosters.posterIds)
         
         // Connect dependencies
         photoCollectionView.dataSource = dataSource
@@ -48,10 +52,8 @@ class PhotoCollectionViewController: UIViewController {
         {
             return
         }
-        if selectedPoster == selectedPoster {
-            destination.poster = selectedPoster
-        }
         
+        destination.posterId = selectedPosterId
     }
     
     func showPhotoDetails() {
@@ -62,10 +64,26 @@ class PhotoCollectionViewController: UIViewController {
 extension PhotoCollectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("didSelectItemAt \(indexPath)")
-        selectedPoster = dataSource?.poster(at: indexPath)
+        selectedPosterId = dataSource?.posterId(at: indexPath)
         showPhotoDetails()
     }
 
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let networkController = networkController,
+        let dataSource = dataSource else { return }
+        
+        networkController.fetchFilmPoster(posterId: dataSource.posterId(at: indexPath)) {
+            [weak self] posterData in
+            if let poster = UIImage(data: posterData) {
+                if (self?.photoCollectionView?.indexPathsForVisibleItems.contains(indexPath) ?? false) {
+                    if let cell = self?.photoCollectionView?.cellForItem(at: indexPath) as? SimplePhotoCollectionViewCell {
+                        cell.poster = poster
+                        print("Updated image at \(indexPath.row) (\(dataSource.posterId(at: indexPath)))")
+                    }
+                }
+            }
+        }
+    }
 }
 
 extension PhotoCollectionViewController: UICollectionViewDelegateFlowLayout  {

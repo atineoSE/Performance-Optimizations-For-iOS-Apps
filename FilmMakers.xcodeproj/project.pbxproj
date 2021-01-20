@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0B3674BB23C8D5AF0082AC85 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3674BA23C8D5AF0082AC85 /* UIViewController.swift */; };
 		0B3674C323CE0B020082AC85 /* FilmMakersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3674C223CE0B020082AC85 /* FilmMakersUITests.swift */; };
+		0B6C380323CF549600F4577C /* TaskFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6C380223CF549600F4577C /* TaskFactory.swift */; };
+		0B6C380523CF54A000F4577C /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6C380423CF54A000F4577C /* NetworkController.swift */; };
 		0BAC0038237D9B0C00B74D80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAC0037237D9B0C00B74D80 /* AppDelegate.swift */; };
 		0BAC003A237D9B0C00B74D80 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAC0039237D9B0C00B74D80 /* SceneDelegate.swift */; };
 		0BAC003F237D9B0C00B74D80 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BAC003D237D9B0C00B74D80 /* Main.storyboard */; };
@@ -43,6 +45,8 @@
 		0B3674C023CE0B010082AC85 /* FilmMakersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FilmMakersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B3674C223CE0B020082AC85 /* FilmMakersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmMakersUITests.swift; sourceTree = "<group>"; };
 		0B3674C423CE0B020082AC85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0B6C380223CF549600F4577C /* TaskFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskFactory.swift; sourceTree = "<group>"; };
+		0B6C380423CF54A000F4577C /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		0BAC0034237D9B0C00B74D80 /* FilmMakers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FilmMakers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BAC0037237D9B0C00B74D80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BAC0039237D9B0C00B74D80 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +95,15 @@
 			path = FilmMakersUITests;
 			sourceTree = "<group>";
 		};
+		0B6C380123CF548700F4577C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				0B6C380223CF549600F4577C /* TaskFactory.swift */,
+				0B6C380423CF54A000F4577C /* NetworkController.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		0BAC002B237D9B0C00B74D80 = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +125,7 @@
 		0BAC0036237D9B0C00B74D80 /* FilmMakers */ = {
 			isa = PBXGroup;
 			children = (
+				0B6C380123CF548700F4577C /* Network */,
 				0BEDE33123C744C10005DFA2 /* Model */,
 				0BAC0037237D9B0C00B74D80 /* AppDelegate.swift */,
 				0BAC0039237D9B0C00B74D80 /* SceneDelegate.swift */,
@@ -295,10 +309,12 @@
 				0BAC0077237EB00000B74D80 /* SimplePhotoCollectionViewCell.swift in Sources */,
 				0BAC0038237D9B0C00B74D80 /* AppDelegate.swift in Sources */,
 				0BAC003A237D9B0C00B74D80 /* SceneDelegate.swift in Sources */,
+				0B6C380323CF549600F4577C /* TaskFactory.swift in Sources */,
 				0BAC00822383141200B74D80 /* ProfileViewController.swift in Sources */,
 				0BAC0073237EB00000B74D80 /* PhotoCollectionDataSource.swift in Sources */,
 				0BEDE33323C744D60005DFA2 /* FilmPosters.swift in Sources */,
 				0BAC007C237EB00000B74D80 /* PhotoViewController.swift in Sources */,
+				0B6C380523CF54A000F4577C /* NetworkController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
