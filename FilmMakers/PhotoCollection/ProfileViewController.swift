@@ -46,6 +46,26 @@ class ProfileViewController: UIViewController {
         initializeContainer()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Hide initially
+        profilePhotoTopConstraint.constant = -100.0
+        containerViewTopConstraint.constant = -containerSize.height / 2.0
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // Reveal hidden elements
+        UIView.animate(withDuration: 0.6, delay: 0.2, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.2, options: .curveEaseIn, animations: {
+            self.containerViewTopConstraint.constant = 24.0
+            self.profilePhotoTopConstraint.constant = 64.0
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+        
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         guard let containerViewController = containerViewController, containerViewController.containerSize == nil else { return }
