@@ -45,8 +45,12 @@ extension PhotoCollectionDataSource : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let identifier = SimplePhotoCollectionViewCell.Identifier
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath) as! SimplePhotoCollectionViewCell
-        cell.poster = UIImage(named: "movie_placeholder")!.resized(newHeight: imageHeight ?? SimplePhotoCollectionViewCell.defaultCellSize.height)
-        
+        if let poster = poster(at: indexPath) {
+            cell.set(poster: poster)
+        } else {
+            cell.set(poster: UIImage(named: "movie_placeholder")!)
+        }
+
         return cell
     }
 }

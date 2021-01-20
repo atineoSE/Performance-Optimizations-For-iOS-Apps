@@ -6,8 +6,12 @@ class SimplePhotoCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet private weak var photoImageView: UIImageView!
     
-    var poster = UIImage() {
-        didSet {
+    func set(poster: UIImage, animated:Bool = false) {
+        if (animated) {
+            UIView.transition(with: photoImageView, duration: 0.2, options: .transitionCrossDissolve, animations: { [weak self] in
+                self?.photoImageView.image = poster
+            }, completion: nil)
+        } else {
             photoImageView.image = poster
         }
     }

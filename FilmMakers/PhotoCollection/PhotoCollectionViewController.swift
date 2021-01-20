@@ -77,7 +77,7 @@ extension PhotoCollectionViewController: UICollectionViewDelegate {
         }
         
         if let poster = dataSource.poster(at: indexPath) {
-            cell.poster = poster
+            cell.set(poster: poster)
         } else {
             networkController.fetchFilmPoster(posterId: dataSource.posterId(at: indexPath)) { [weak self] posterData in
                 if let poster = UIImage(data: posterData) {
@@ -85,7 +85,7 @@ extension PhotoCollectionViewController: UICollectionViewDelegate {
                     print("Fetched image at \(indexPath.row) (\(dataSource.posterId(at: indexPath)))")
                     if (self?.photoCollectionView?.indexPathsForVisibleItems.contains(indexPath) ?? false) {
                         if let cell = self?.photoCollectionView?.cellForItem(at: indexPath) as? SimplePhotoCollectionViewCell {
-                            cell.poster = poster
+                            cell.set(poster: poster, animated: true)
                         }
                     }
                 }
