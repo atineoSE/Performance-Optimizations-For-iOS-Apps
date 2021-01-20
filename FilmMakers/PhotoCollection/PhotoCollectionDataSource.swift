@@ -31,6 +31,10 @@ class PhotoCollectionDataSource : NSObject {
     func poster(at indexPath: IndexPath) -> UIImage? {
         return posterImages[posterIds[indexPath.row]]
     }
+    
+    func hasPoster(at indexPath: IndexPath) -> Bool {
+        return posterImages[posterId(at: indexPath)] != nil
+    }
 }
 
 extension PhotoCollectionDataSource : UICollectionViewDataSource {

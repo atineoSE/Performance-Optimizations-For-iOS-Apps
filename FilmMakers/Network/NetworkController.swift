@@ -14,7 +14,7 @@ enum RootPath: String {
 }
 
 class NetworkController {
-    var filmPosterTask: URLSessionDataTask? = nil
+    var filmPosterTasks: [String: URLSessionDataTask] = [:]
     
     func fetchFilmPoster(posterId: String, small: Bool, completion: @escaping (Data) -> ()) {
         let rootUrl: URL
@@ -24,7 +24,22 @@ class NetworkController {
             rootUrl = URL(string: RootPath.bigPoster.rawValue)!
         }
         let filmPosterUrl = rootUrl.appendingPathComponent(posterId + ".jpg")
-        filmPosterTask = TaskFactory.task(url: filmPosterUrl, completion: completion)
-        filmPosterTask?.resume()
+        let filmPosterTask = TaskFactory.task(url: filmPosterUrl, completion: completion)
+        filmPosterTasks[posterId] = filmPosterTask
+        filmPosterTask.resume()
+    }
+    
+    func cancelFetch(for posterId: String) {
+        guard let filmPosterTask = filmPosterTasks[posterId] else { return }
+        filmPosterTask.cancel()
+        filmPosterTasks.removeValue(forKey: posterId)
+    }
+    
+    func isFetching(posterId: String) -> Bool {
+        return filmPosterTasks[posterId] != nil
+    }
+    
+    deinit {
+        filmPosterTasks.forEach { $0.value.cancel() }
     }
 }

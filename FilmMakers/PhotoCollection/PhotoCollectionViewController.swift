@@ -33,6 +33,7 @@ class PhotoCollectionViewController: UIViewController {
         // Connect dependencies
         photoCollectionView.dataSource = dataSource
         photoCollectionView.delegate = self
+        photoCollectionView.prefetchDataSource = self
         
         // Register photo cell
         let identifier = SimplePhotoCollectionViewCell.Identifier
@@ -88,6 +89,28 @@ class PhotoCollectionViewController: UIViewController {
     func showPhotoDetails() {
         performSegue(withIdentifier: PhotoCollectionViewController.ShowPhotoDetailsSegueIdentifier, sender: self)
     }
+    
+    private func needsFetchingPoster(at indexPath: IndexPath) -> Bool {
+        guard let networkController = networkController,
+            let dataSource = dataSource else { return false }
+        
+        return !dataSource.hasPoster(at: indexPath) && !networkController.isFetching(posterId: dataSource.posterId(at: indexPath))
+    }
+    
+    private func fetchItem(at indexPath: IndexPath) {
+        guard let networkController = networkController, let dataSource = dataSource else { return }
+        
+        networkController.fetchFilmPoster(posterId: dataSource.posterId(at: indexPath), small: true) { [weak self] posterData in
+            if let poster = UIImage(data: posterData) {
+                self?.dataSource?.store(poster: poster, at: indexPath)
+                if (self?.photoCollectionView?.indexPathsForVisibleItems.contains(indexPath) ?? false) {
+                    if let cell = self?.photoCollectionView?.cellForItem(at: indexPath) as? SimplePhotoCollectionViewCell {
+                        cell.set(poster: poster, animated: true)
+                    }
+                }
+            }
+        }
+    }
 }
 
 extension PhotoCollectionViewController: UICollectionViewDelegate {
@@ -98,24 +121,18 @@ extension PhotoCollectionViewController: UICollectionViewDelegate {
     }
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        guard let cell = cell as? SimplePhotoCollectionViewCell,
-        let networkController = networkController,
-        let dataSource = dataSource else { return }
-        
+        guard
+            let cell = cell as? SimplePhotoCollectionViewCell,
+            let dataSource = dataSource
+        else {
+            return
+        }
+
         if let poster = dataSource.poster(at: indexPath) {
             cell.set(poster: poster)
-        } else {
-            networkController.fetchFilmPoster(posterId: dataSource.posterId(at: indexPath), small: true) { [weak self] posterData in
-                if let poster = UIImage(data: posterData) {
-                    dataSource.store(poster: poster, at: indexPath)
-                    print("Fetched image at \(indexPath.row) (\(dataSource.posterId(at: indexPath)))")
-                    if (self?.photoCollectionView?.indexPathsForVisibleItems.contains(indexPath) ?? false) {
-                        if let cell = self?.photoCollectionView?.cellForItem(at: indexPath) as? SimplePhotoCollectionViewCell {
-                            cell.set(poster: poster, animated: true)
-                        }
-                    }
-                }
-            }
+        } else if (needsFetchingPoster(at: indexPath)) {
+            fetchItem(at: indexPath)
+            print("Fetch image at \(indexPath.row)")
         }
     }
 }
@@ -135,5 +152,25 @@ extension PhotoCollectionViewController: UICollectionViewDelegateFlowLayout  {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0.0
+    }
+}
+
+extension PhotoCollectionViewController: UICollectionViewDataSourcePrefetching {
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        indexPaths.forEach { indexPath in
+            if (needsFetchingPoster(at: indexPath)) {
+                fetchItem(at: indexPath)
+                print("Prefetch image at index \(indexPath.row)")
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cancelPrefetchingForItemsAt indexPaths: [IndexPath]) {
+        guard let networkController = networkController, let dataSource = dataSource else { return }
+        
+        indexPaths.forEach {indexPath in
+            networkController.cancelFetch(for: dataSource.posterId(at: indexPath))
+            print("Cancelled prefetching of image \(dataSource.posterId(at: indexPath)) at index \(indexPath.row)")
+        }
     }
 }
