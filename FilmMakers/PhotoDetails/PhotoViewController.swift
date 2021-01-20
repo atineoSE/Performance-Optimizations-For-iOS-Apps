@@ -11,5 +11,6 @@ class PhotoViewController: UIViewController {
     
     override func viewDidLoad() {
         photoDetail.image = poster
+        photoDetail.accessibilityIdentifier = "PosterDetail"
     }
 }

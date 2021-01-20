@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0B3674BB23C8D5AF0082AC85 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3674BA23C8D5AF0082AC85 /* UIViewController.swift */; };
+		0B3674C323CE0B020082AC85 /* FilmMakersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3674C223CE0B020082AC85 /* FilmMakersUITests.swift */; };
 		0BAC0038237D9B0C00B74D80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAC0037237D9B0C00B74D80 /* AppDelegate.swift */; };
 		0BAC003A237D9B0C00B74D80 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAC0039237D9B0C00B74D80 /* SceneDelegate.swift */; };
 		0BAC003F237D9B0C00B74D80 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BAC003D237D9B0C00B74D80 /* Main.storyboard */; };
@@ -27,8 +28,21 @@
 		0BEDE33323C744D60005DFA2 /* FilmPosters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEDE33223C744D60005DFA2 /* FilmPosters.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		0B3674C523CE0B020082AC85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0BAC002C237D9B0C00B74D80 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0BAC0033237D9B0C00B74D80;
+			remoteInfo = FilmMakers;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0B3674BA23C8D5AF0082AC85 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		0B3674C023CE0B010082AC85 /* FilmMakersUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FilmMakersUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B3674C223CE0B020082AC85 /* FilmMakersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmMakersUITests.swift; sourceTree = "<group>"; };
+		0B3674C423CE0B020082AC85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0BAC0034237D9B0C00B74D80 /* FilmMakers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FilmMakers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BAC0037237D9B0C00B74D80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BAC0039237D9B0C00B74D80 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +65,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0B3674BD23CE0B010082AC85 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0BAC0031237D9B0C00B74D80 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -61,10 +82,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B3674C123CE0B020082AC85 /* FilmMakersUITests */ = {
+			isa = PBXGroup;
+			children = (
+				0B3674C223CE0B020082AC85 /* FilmMakersUITests.swift */,
+				0B3674C423CE0B020082AC85 /* Info.plist */,
+			);
+			path = FilmMakersUITests;
+			sourceTree = "<group>";
+		};
 		0BAC002B237D9B0C00B74D80 = {
 			isa = PBXGroup;
 			children = (
 				0BAC0036237D9B0C00B74D80 /* FilmMakers */,
+				0B3674C123CE0B020082AC85 /* FilmMakersUITests */,
 				0BAC0035237D9B0C00B74D80 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -73,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				0BAC0034237D9B0C00B74D80 /* FilmMakers.app */,
+				0B3674C023CE0B010082AC85 /* FilmMakersUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -146,6 +178,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		0B3674BF23CE0B010082AC85 /* FilmMakersUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0B3674C923CE0B020082AC85 /* Build configuration list for PBXNativeTarget "FilmMakersUITests" */;
+			buildPhases = (
+				0B3674BC23CE0B010082AC85 /* Sources */,
+				0B3674BD23CE0B010082AC85 /* Frameworks */,
+				0B3674BE23CE0B010082AC85 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0B3674C623CE0B020082AC85 /* PBXTargetDependency */,
+			);
+			name = FilmMakersUITests;
+			productName = FilmMakersUITests;
+			productReference = 0B3674C023CE0B010082AC85 /* FilmMakersUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		0BAC0033237D9B0C00B74D80 /* FilmMakers */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0BAC0048237D9B0E00B74D80 /* Build configuration list for PBXNativeTarget "FilmMakers" */;
@@ -173,6 +223,10 @@
 				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = adriantineo.com;
 				TargetAttributes = {
+					0B3674BF23CE0B010082AC85 = {
+						CreatedOnToolsVersion = 11.3;
+						TestTargetID = 0BAC0033237D9B0C00B74D80;
+					};
 					0BAC0033237D9B0C00B74D80 = {
 						CreatedOnToolsVersion = 11.2;
 					};
@@ -192,11 +246,19 @@
 			projectRoot = "";
 			targets = (
 				0BAC0033237D9B0C00B74D80 /* FilmMakers */,
+				0B3674BF23CE0B010082AC85 /* FilmMakersUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0B3674BE23CE0B010082AC85 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0BAC0032237D9B0C00B74D80 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -214,6 +276,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0B3674BC23CE0B010082AC85 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B3674C323CE0B020082AC85 /* FilmMakersUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		0BAC0030237D9B0C00B74D80 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -233,6 +303,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0B3674C623CE0B020082AC85 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0BAC0033237D9B0C00B74D80 /* FilmMakers */;
+			targetProxy = 0B3674C523CE0B020082AC85 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		0BAC003D237D9B0C00B74D80 /* Main.storyboard */ = {
@@ -254,6 +332,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0B3674C723CE0B020082AC85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WDVRK9UE68;
+				INFOPLIST_FILE = FilmMakersUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.adriantineo.FilmMakersUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FilmMakers;
+			};
+			name = Debug;
+		};
+		0B3674C823CE0B020082AC85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WDVRK9UE68;
+				INFOPLIST_FILE = FilmMakersUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.adriantineo.FilmMakersUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FilmMakers;
+			};
+			name = Release;
+		};
 		0BAC0046237D9B0E00B74D80 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -407,6 +523,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0B3674C923CE0B020082AC85 /* Build configuration list for PBXNativeTarget "FilmMakersUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0B3674C723CE0B020082AC85 /* Debug */,
+				0B3674C823CE0B020082AC85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		0BAC002F237D9B0C00B74D80 /* Build configuration list for PBXProject "FilmMakers" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
