@@ -7,7 +7,7 @@ class PhotoCollectionViewController: UIViewController {
     
     private var networkController: NetworkController?
     private var dataSource: PhotoCollectionDataSource?
-    private var selectedPosterId: String?
+    private var selectedPoster: UIImage?
     
     var containerSize: CGSize? {
         didSet {
@@ -53,7 +53,7 @@ class PhotoCollectionViewController: UIViewController {
             return
         }
         
-        destination.posterId = selectedPosterId
+        destination.poster = selectedPoster
     }
     
     func showPhotoDetails() {
@@ -64,21 +64,29 @@ class PhotoCollectionViewController: UIViewController {
 extension PhotoCollectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("didSelectItemAt \(indexPath)")
-        selectedPosterId = dataSource?.posterId(at: indexPath)
+        selectedPoster = dataSource?.poster(at: indexPath)
         showPhotoDetails()
     }
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        guard let networkController = networkController,
-        let dataSource = dataSource else { return }
+        guard let cell = cell as? SimplePhotoCollectionViewCell,
+              let networkController = networkController,
+              let dataSource = dataSource
+        else {
+            return
+        }
         
-        networkController.fetchFilmPoster(posterId: dataSource.posterId(at: indexPath)) {
-            [weak self] posterData in
-            if let poster = UIImage(data: posterData) {
-                if (self?.photoCollectionView?.indexPathsForVisibleItems.contains(indexPath) ?? false) {
-                    if let cell = self?.photoCollectionView?.cellForItem(at: indexPath) as? SimplePhotoCollectionViewCell {
-                        cell.poster = poster
-                        print("Updated image at \(indexPath.row) (\(dataSource.posterId(at: indexPath)))")
+        if let poster = dataSource.poster(at: indexPath) {
+            cell.poster = poster
+        } else {
+            networkController.fetchFilmPoster(posterId: dataSource.posterId(at: indexPath)) { [weak self] posterData in
+                if let poster = UIImage(data: posterData) {
+                    dataSource.store(poster: poster, at: indexPath)
+                    print("Fetched image at \(indexPath.row) (\(dataSource.posterId(at: indexPath)))")
+                    if (self?.photoCollectionView?.indexPathsForVisibleItems.contains(indexPath) ?? false) {
+                        if let cell = self?.photoCollectionView?.cellForItem(at: indexPath) as? SimplePhotoCollectionViewCell {
+                            cell.poster = poster
+                        }
                     }
                 }
             }

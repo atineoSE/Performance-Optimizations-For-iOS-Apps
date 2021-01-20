@@ -10,6 +10,7 @@ class PhotoCollectionDataSource : NSObject {
         }
     }
     private let posterIds: [String]
+    private var posterImages: [String: UIImage] = [:]
 
     init(posterIds: [String]) {
         self.posterIds = posterIds
@@ -21,6 +22,14 @@ class PhotoCollectionDataSource : NSObject {
 
     func posterId(at indexPath: IndexPath) -> String {
         return posterIds[indexPath.row]
+    }
+    
+    func store(poster: UIImage, at indexPath: IndexPath) {
+        posterImages[posterIds[indexPath.row]] = poster
+    }
+    
+    func poster(at indexPath: IndexPath) -> UIImage? {
+        return posterImages[posterIds[indexPath.row]]
     }
 }
 
